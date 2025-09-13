@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "name": "Nathan Scott",
+    "company": "Skyline Tech",
+    "email": "nathan.scott@skylinetech.com",
+    "source": "Referral",
+    "score": 78,
+    "status": "Qualified"
+  },
+  {
+    "id": 2,
+    "name": "Carlos Davis",
+    "company": "Bright Ideas",
+    "email": "carlos.davis@brightideas.com",
+    "source": "Referral",
+    "score": 87,
+    "status": "Lost"
+  },
+  {
+    "id": 3,
+    "name": "Steve Roberts",
+    "company": "Tech Solutions",
+    "email": "steve.roberts@techsolutions.com",
+    "source": "Referral",
+    "score": 72,
+    "status": "Qualified"
+  },
+  {
+    "id": 4,
+    "name": "Olivia Lee",
+    "company": "Visionary Labs",
+    "email": "olivia.lee@visionarylabs.com",
+    "source": "Referral",
+    "score": 82,
+    "status": "Qualified"
+  },
+  {
+    "id": 5,
+    "name": "Rachel Mendes",
+    "company": "Innovate Inc",
+    "email": "rachel.mendes@innovateinc.com",
+    "source": "Website",
+    "score": 100,
+    "status": "New"
+  },
+  {
+    "id": 6,
+    "name": "Tina Brown",
+    "company": "Innovatech",
+    "email": "tina.brown@innovatech.com",
+    "source": "Website",
+    "score": 94,
+    "status": "Contacted"
+  },
+  {
+    "id": 7,
+    "name": "Nathan Mendes",
+    "company": "Innovate Inc",
+    "email": "nathan.mendes@innovateinc.com",
+    "source": "Event",
+    "score": 62,
+    "status": "Lost"
+  },
+  {
+    "id": 8,
+    "name": "Aaron Kim",
+    "company": "Bright Ideas",
+    "email": "aaron.kim@brightideas.com",
+    "source": "Event",
+    "score": 73,
+    "status": "Lost"
+  },
+  {
+    "id": 9,
+    "name": "Alice Johnson",
+    "company": "Creative Minds",
+    "email": "alice.johnson@creativeminds.com",
+    "source": "Website",
+    "score": 95,
+    "status": "Contacted"
+  },
+  {
+    "id": 10,
+    "name": "Frank Miller",
+    "company": "Acme Corp",
+    "email": "frank.miller@acmecorp.com",
+    "source": "Website",
+    "score": 85,
+    "status": "Contacted"
+  },
+  {
+    "id": 11,
+    "name": "Karen Smith",
+    "company": "Smart Solutions",
+    "email": "karen.smith@smartsolutions.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "Lost"
+  },
+  {
+    "id": 12,
+    "name": "Isabel Allen",
+    "company": "TechFlow",
+    "email": "isabel.allen@techflow.com",
+    "source": "Referral",
+    "score": 63,
+    "status": "Lost"
+  },
+  {
+    "id": 13,
+    "name": "Mia Martin",
+    "company": "Skyline Tech",
+    "email": "mia.martin@skylinetech.com",
+    "source": "Event",
+    "score": 62,
+    "status": "Contacted"
+  },
+  {
+    "id": 14,
+    "name": "Quinn Clark",
+    "company": "Bright Future",
+    "email": "quinn.clark@brightfuture.com",
+    "source": "Website",
+    "score": 92,
+    "status": "Contacted"
+  },
+  {
+    "id": 15,
+    "name": "Grace Clark",
+    "company": "Acme Corp",
+    "email": "grace.clark@acmecorp.com",
+    "source": "Website",
+    "score": 84,
+    "status": "Qualified"
+  },
+  {
+    "id": 16,
+    "name": "Grace Turner",
+    "company": "Innovate Inc",
+    "email": "grace.turner@innovateinc.com",
+    "source": "Referral",
+    "score": 62,
+    "status": "Lost"
+  },
+  {
+    "id": 17,
+    "name": "Eva Clark",
+    "company": "TechFlow",
+    "email": "eva.clark@techflow.com",
+    "source": "Website",
+    "score": 60,
+    "status": "New"
+  },
+  {
+    "id": 18,
+    "name": "Isabel Simmons",
+    "company": "Innovate Inc",
+    "email": "isabel.simmons@innovateinc.com",
+    "source": "Event",
+    "score": 67,
+    "status": "Contacted"
+  },
+  {
+    "id": 19,
+    "name": "Victor Patel",
+    "company": "TechFlow",
+    "email": "victor.patel@techflow.com",
+    "source": "Event",
+    "score": 84,
+    "status": "Qualified"
+  },
+  {
+    "id": 20,
+    "name": "Uma Young",
+    "company": "TechFlow",
+    "email": "uma.young@techflow.com",
+    "source": "Referral",
+    "score": 89,
+    "status": "Contacted"
+  },
+  {
+    "id": 21,
+    "name": "Xavier Adams",
+    "company": "Bright Future",
+    "email": "xavier.adams@brightfuture.com",
+    "source": "Event",
+    "score": 83,
+    "status": "Qualified"
+  },
+  {
+    "id": 22,
+    "name": "Bella Smith",
+    "company": "NextLevel",
+    "email": "bella.smith@nextlevel.com",
+    "source": "Referral",
+    "score": 68,
+    "status": "Lost"
+  },
+  {
+    "id": 23,
+    "name": "Frank Allen",
+    "company": "NextStep",
+    "email": "frank.allen@nextstep.com",
+    "source": "Website",
+    "score": 92,
+    "status": "New"
+  },
+  {
+    "id": 24,
+    "name": "Isabel White",
+    "company": "Innovate Inc",
+    "email": "isabel.white@innovateinc.com",
+    "source": "Referral",
+    "score": 77,
+    "status": "New"
+  },
+  {
+    "id": 25,
+    "name": "Bob Simmons",
+    "company": "AlphaTech",
+    "email": "bob.simmons@alphatech.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "Contacted"
+  },
+  {
+    "id": 26,
+    "name": "Zach Patel",
+    "company": "Bright Future",
+    "email": "zach.patel@brightfuture.com",
+    "source": "Website",
+    "score": 81,
+    "status": "Lost"
+  },
+  {
+    "id": 27,
+    "name": "Olivia Parker",
+    "company": "NextStep",
+    "email": "olivia.parker@nextstep.com",
+    "source": "Referral",
+    "score": 84,
+    "status": "Lost"
+  },
+  {
+    "id": 28,
+    "name": "Jack Young",
+    "company": "Global Dynamics",
+    "email": "jack.young@globaldynamics.com",
+    "source": "Website",
+    "score": 98,
+    "status": "Lost"
+  },
+  {
+    "id": 29,
+    "name": "Frank Miller",
+    "company": "BlueWave",
+    "email": "frank.miller@bluewave.com",
+    "source": "Referral",
+    "score": 66,
+    "status": "New"
+  },
+  {
+    "id": 30,
+    "name": "Aaron Clark",
+    "company": "TechBridge",
+    "email": "aaron.clark@techbridge.com",
+    "source": "Event",
+    "score": 94,
+    "status": "New"
+  },
+  {
+    "id": 31,
+    "name": "Uma Brooks",
+    "company": "NextStep",
+    "email": "uma.brooks@nextstep.com",
+    "source": "Referral",
+    "score": 97,
+    "status": "Lost"
+  },
+  {
+    "id": 32,
+    "name": "Carlos Green",
+    "company": "TechFlow",
+    "email": "carlos.green@techflow.com",
+    "source": "Event",
+    "score": 96,
+    "status": "New"
+  },
+  {
+    "id": 33,
+    "name": "Xavier White",
+    "company": "NextGen Systems",
+    "email": "xavier.white@nextgensystems.com",
+    "source": "Website",
+    "score": 80,
+    "status": "Contacted"
+  },
+  {
+    "id": 34,
+    "name": "Cathy Brooks",
+    "company": "Innovatech",
+    "email": "cathy.brooks@innovatech.com",
+    "source": "Event",
+    "score": 87,
+    "status": "Lost"
+  },
+  {
+    "id": 35,
+    "name": "David Turner",
+    "company": "AlphaTech",
+    "email": "david.turner@alphatech.com",
+    "source": "Event",
+    "score": 92,
+    "status": "Contacted"
+  },
+  {
+    "id": 36,
+    "name": "Xavier Roberts",
+    "company": "Creative Minds",
+    "email": "xavier.roberts@creativeminds.com",
+    "source": "Referral",
+    "score": 64,
+    "status": "Lost"
+  },
+  {
+    "id": 37,
+    "name": "Eva Young",
+    "company": "Smart Solutions",
+    "email": "eva.young@smartsolutions.com",
+    "source": "Event",
+    "score": 81,
+    "status": "Lost"
+  },
+  {
+    "id": 38,
+    "name": "Isabel Miller",
+    "company": "TechBridge",
+    "email": "isabel.miller@techbridge.com",
+    "source": "Website",
+    "score": 62,
+    "status": "Qualified"
+  },
+  {
+    "id": 39,
+    "name": "Leo Miller",
+    "company": "TechBridge",
+    "email": "leo.miller@techbridge.com",
+    "source": "Event",
+    "score": 97,
+    "status": "New"
+  },
+  {
+    "id": 40,
+    "name": "Isabel Brooks",
+    "company": "EcoTech",
+    "email": "isabel.brooks@ecotech.com",
+    "source": "Event",
+    "score": 99,
+    "status": "Lost"
+  },
+  {
+    "id": 41,
+    "name": "Wendy Young",
+    "company": "Smart Solutions",
+    "email": "wendy.young@smartsolutions.com",
+    "source": "Website",
+    "score": 66,
+    "status": "Lost"
+  },
+  {
+    "id": 42,
+    "name": "Xavier Kim",
+    "company": "NextStep",
+    "email": "xavier.kim@nextstep.com",
+    "source": "Event",
+    "score": 80,
+    "status": "Qualified"
+  },
+  {
+    "id": 43,
+    "name": "Steve Patel",
+    "company": "Skyline Tech",
+    "email": "steve.patel@skylinetech.com",
+    "source": "Event",
+    "score": 61,
+    "status": "Contacted"
+  },
+  {
+    "id": 44,
+    "name": "Tina Scott",
+    "company": "AlphaTech",
+    "email": "tina.scott@alphatech.com",
+    "source": "Referral",
+    "score": 97,
+    "status": "Contacted"
+  },
+  {
+    "id": 45,
+    "name": "Grace Evans",
+    "company": "NextStep",
+    "email": "grace.evans@nextstep.com",
+    "source": "Website",
+    "score": 63,
+    "status": "Contacted"
+  },
+  {
+    "id": 46,
+    "name": "Aaron Brown",
+    "company": "NextGen Systems",
+    "email": "aaron.brown@nextgensystems.com",
+    "source": "Referral",
+    "score": 77,
+    "status": "New"
+  },
+  {
+    "id": 47,
+    "name": "Karen Davis",
+    "company": "TechBridge",
+    "email": "karen.davis@techbridge.com",
+    "source": "Website",
+    "score": 80,
+    "status": "Lost"
+  },
+  {
+    "id": 48,
+    "name": "Bob Lee",
+    "company": "Creative Minds",
+    "email": "bob.lee@creativeminds.com",
+    "source": "Event",
+    "score": 66,
+    "status": "Lost"
+  },
+  {
+    "id": 49,
+    "name": "Isabel Scott",
+    "company": "Acme Corp",
+    "email": "isabel.scott@acmecorp.com",
+    "source": "Website",
+    "score": 65,
+    "status": "New"
+  },
+  {
+    "id": 50,
+    "name": "Henry White",
+    "company": "NextStep",
+    "email": "henry.white@nextstep.com",
+    "source": "Event",
+    "score": 97,
+    "status": "New"
+  },
+  {
+    "id": 51,
+    "name": "Rachel Mendes",
+    "company": "Bright Future",
+    "email": "rachel.mendes@brightfuture.com",
+    "source": "Referral",
+    "score": 66,
+    "status": "New"
+  },
+  {
+    "id": 52,
+    "name": "Victor Allen",
+    "company": "Innovate Inc",
+    "email": "victor.allen@innovateinc.com",
+    "source": "Event",
+    "score": 91,
+    "status": "Contacted"
+  },
+  {
+    "id": 53,
+    "name": "Bella Patel",
+    "company": "CreativeWorks",
+    "email": "bella.patel@creativeworks.com",
+    "source": "Event",
+    "score": 80,
+    "status": "New"
+  },
+  {
+    "id": 54,
+    "name": "Frank Turner",
+    "company": "Innovate Inc",
+    "email": "frank.turner@innovateinc.com",
+    "source": "Referral",
+    "score": 96,
+    "status": "Lost"
+  },
+  {
+    "id": 55,
+    "name": "Jack Miller",
+    "company": "NextStep",
+    "email": "jack.miller@nextstep.com",
+    "source": "Event",
+    "score": 86,
+    "status": "Qualified"
+  },
+  {
+    "id": 56,
+    "name": "Yara Hall",
+    "company": "Global Dynamics",
+    "email": "yara.hall@globaldynamics.com",
+    "source": "Referral",
+    "score": 74,
+    "status": "Qualified"
+  },
+  {
+    "id": 57,
+    "name": "Frank Brooks",
+    "company": "Innovate Inc",
+    "email": "frank.brooks@innovateinc.com",
+    "source": "Website",
+    "score": 89,
+    "status": "New"
+  },
+  {
+    "id": 58,
+    "name": "Nathan Hall",
+    "company": "BlueWave",
+    "email": "nathan.hall@bluewave.com",
+    "source": "Referral",
+    "score": 93,
+    "status": "Contacted"
+  },
+  {
+    "id": 59,
+    "name": "Quinn Young",
+    "company": "NextLevel",
+    "email": "quinn.young@nextlevel.com",
+    "source": "Website",
+    "score": 60,
+    "status": "Qualified"
+  },
+  {
+    "id": 60,
+    "name": "Olivia Lopez",
+    "company": "Skyline Tech",
+    "email": "olivia.lopez@skylinetech.com",
+    "source": "Referral",
+    "score": 94,
+    "status": "Qualified"
+  },
+  {
+    "id": 61,
+    "name": "Karen Evans",
+    "company": "TechBridge",
+    "email": "karen.evans@techbridge.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "Contacted"
+  },
+  {
+    "id": 62,
+    "name": "Jack Evans",
+    "company": "Acme Corp",
+    "email": "jack.evans@acmecorp.com",
+    "source": "Website",
+    "score": 99,
+    "status": "Lost"
+  },
+  {
+    "id": 63,
+    "name": "Aaron Simmons",
+    "company": "Bright Ideas",
+    "email": "aaron.simmons@brightideas.com",
+    "source": "Referral",
+    "score": 91,
+    "status": "Qualified"
+  },
+  {
+    "id": 64,
+    "name": "Karen Green",
+    "company": "NextLevel",
+    "email": "karen.green@nextlevel.com",
+    "source": "Event",
+    "score": 93,
+    "status": "Contacted"
+  },
+  {
+    "id": 65,
+    "name": "Grace Kim",
+    "company": "Smart Solutions",
+    "email": "grace.kim@smartsolutions.com",
+    "source": "Event",
+    "score": 88,
+    "status": "Contacted"
+  },
+  {
+    "id": 66,
+    "name": "Victor Brown",
+    "company": "Visionary Labs",
+    "email": "victor.brown@visionarylabs.com",
+    "source": "Website",
+    "score": 80,
+    "status": "Lost"
+  },
+  {
+    "id": 67,
+    "name": "Bob Adams",
+    "company": "Innovatech",
+    "email": "bob.adams@innovatech.com",
+    "source": "Referral",
+    "score": 77,
+    "status": "Contacted"
+  },
+  {
+    "id": 68,
+    "name": "Jack Brown",
+    "company": "Creative Minds",
+    "email": "jack.brown@creativeminds.com",
+    "source": "Event",
+    "score": 72,
+    "status": "Qualified"
+  },
+  {
+    "id": 69,
+    "name": "Quinn Adams",
+    "company": "NextStep",
+    "email": "quinn.adams@nextstep.com",
+    "source": "Event",
+    "score": 88,
+    "status": "Lost"
+  },
+  {
+    "id": 70,
+    "name": "Leo Green",
+    "company": "EcoTech",
+    "email": "leo.green@ecotech.com",
+    "source": "Website",
+    "score": 71,
+    "status": "Contacted"
+  },
+  {
+    "id": 71,
+    "name": "Cathy Mendes",
+    "company": "TechBridge",
+    "email": "cathy.mendes@techbridge.com",
+    "source": "Referral",
+    "score": 89,
+    "status": "Lost"
+  },
+  {
+    "id": 72,
+    "name": "Zach Smith",
+    "company": "Visionary Labs",
+    "email": "zach.smith@visionarylabs.com",
+    "source": "Event",
+    "score": 63,
+    "status": "New"
+  },
+  {
+    "id": 73,
+    "name": "Paul Lopez",
+    "company": "Bright Ideas",
+    "email": "paul.lopez@brightideas.com",
+    "source": "Website",
+    "score": 83,
+    "status": "New"
+  },
+  {
+    "id": 74,
+    "name": "Grace Martin",
+    "company": "Visionary Labs",
+    "email": "grace.martin@visionarylabs.com",
+    "source": "Website",
+    "score": 77,
+    "status": "Lost"
+  },
+  {
+    "id": 75,
+    "name": "Leo Davis",
+    "company": "Bright Ideas",
+    "email": "leo.davis@brightideas.com",
+    "source": "Referral",
+    "score": 96,
+    "status": "Lost"
+  },
+  {
+    "id": 76,
+    "name": "Wendy Young",
+    "company": "TechFlow",
+    "email": "wendy.young@techflow.com",
+    "source": "Event",
+    "score": 98,
+    "status": "Qualified"
+  },
+  {
+    "id": 77,
+    "name": "Olivia Simmons",
+    "company": "AlphaTech",
+    "email": "olivia.simmons@alphatech.com",
+    "source": "Event",
+    "score": 89,
+    "status": "Lost"
+  },
+  {
+    "id": 78,
+    "name": "Henry Mendes",
+    "company": "Global Dynamics",
+    "email": "henry.mendes@globaldynamics.com",
+    "source": "Referral",
+    "score": 73,
+    "status": "New"
+  },
+  {
+    "id": 79,
+    "name": "Rachel Hall",
+    "company": "Skyline Tech",
+    "email": "rachel.hall@skylinetech.com",
+    "source": "Website",
+    "score": 60,
+    "status": "Qualified"
+  },
+  {
+    "id": 80,
+    "name": "Tina Kelly",
+    "company": "Bright Future",
+    "email": "tina.kelly@brightfuture.com",
+    "source": "Referral",
+    "score": 86,
+    "status": "Lost"
+  },
+  {
+    "id": 81,
+    "name": "Yara Evans",
+    "company": "Bright Ideas",
+    "email": "yara.evans@brightideas.com",
+    "source": "Referral",
+    "score": 75,
+    "status": "Qualified"
+  },
+  {
+    "id": 82,
+    "name": "Victor Adams",
+    "company": "Skyline Tech",
+    "email": "victor.adams@skylinetech.com",
+    "source": "Event",
+    "score": 88,
+    "status": "Lost"
+  },
+  {
+    "id": 83,
+    "name": "Xavier Turner",
+    "company": "Innovatech",
+    "email": "xavier.turner@innovatech.com",
+    "source": "Event",
+    "score": 96,
+    "status": "Lost"
+  },
+  {
+    "id": 84,
+    "name": "Cathy Scott",
+    "company": "BlueWave",
+    "email": "cathy.scott@bluewave.com",
+    "source": "Event",
+    "score": 72,
+    "status": "Lost"
+  },
+  {
+    "id": 85,
+    "name": "Frank Ramirez",
+    "company": "TechFlow",
+    "email": "frank.ramirez@techflow.com",
+    "source": "Referral",
+    "score": 63,
+    "status": "Lost"
+  },
+  {
+    "id": 86,
+    "name": "Quinn Martin",
+    "company": "Tech Solutions",
+    "email": "quinn.martin@techsolutions.com",
+    "source": "Website",
+    "score": 61,
+    "status": "Contacted"
+  },
+  {
+    "id": 87,
+    "name": "Quinn Kelly",
+    "company": "Smart Solutions",
+    "email": "quinn.kelly@smartsolutions.com",
+    "source": "Website",
+    "score": 82,
+    "status": "Lost"
+  },
+  {
+    "id": 88,
+    "name": "Mia Young",
+    "company": "Skyline Tech",
+    "email": "mia.young@skylinetech.com",
+    "source": "Referral",
+    "score": 85,
+    "status": "New"
+  },
+  {
+    "id": 89,
+    "name": "Grace Stone",
+    "company": "Creative Minds",
+    "email": "grace.stone@creativeminds.com",
+    "source": "Website",
+    "score": 71,
+    "status": "Qualified"
+  },
+  {
+    "id": 90,
+    "name": "Grace Patel",
+    "company": "NextLevel",
+    "email": "grace.patel@nextlevel.com",
+    "source": "Website",
+    "score": 80,
+    "status": "New"
+  },
+  {
+    "id": 91,
+    "name": "Olivia Scott",
+    "company": "Global Dynamics",
+    "email": "olivia.scott@globaldynamics.com",
+    "source": "Referral",
+    "score": 70,
+    "status": "New"
+  },
+  {
+    "id": 92,
+    "name": "Zach Miller",
+    "company": "Innovate Inc",
+    "email": "zach.miller@innovateinc.com",
+    "source": "Referral",
+    "score": 79,
+    "status": "Qualified"
+  },
+  {
+    "id": 93,
+    "name": "Henry Ramirez",
+    "company": "AlphaTech",
+    "email": "henry.ramirez@alphatech.com",
+    "source": "Event",
+    "score": 64,
+    "status": "New"
+  },
+  {
+    "id": 94,
+    "name": "Mia Patel",
+    "company": "NextStep",
+    "email": "mia.patel@nextstep.com",
+    "source": "Referral",
+    "score": 78,
+    "status": "Qualified"
+  },
+  {
+    "id": 95,
+    "name": "Henry White",
+    "company": "Acme Corp",
+    "email": "henry.white@acmecorp.com",
+    "source": "Referral",
+    "score": 90,
+    "status": "Contacted"
+  },
+  {
+    "id": 96,
+    "name": "Xavier Brooks",
+    "company": "TechFlow",
+    "email": "xavier.brooks@techflow.com",
+    "source": "Website",
+    "score": 97,
+    "status": "Lost"
+  },
+  {
+    "id": 97,
+    "name": "Uma Hall",
+    "company": "CreativeWorks",
+    "email": "uma.hall@creativeworks.com",
+    "source": "Website",
+    "score": 91,
+    "status": "Qualified"
+  },
+  {
+    "id": 98,
+    "name": "Isabel Turner",
+    "company": "Skyline Tech",
+    "email": "isabel.turner@skylinetech.com",
+    "source": "Referral",
+    "score": 82,
+    "status": "Contacted"
+  },
+  {
+    "id": 99,
+    "name": "David Patel",
+    "company": "Skyline Tech",
+    "email": "david.patel@skylinetech.com",
+    "source": "Website",
+    "score": 98,
+    "status": "Qualified"
+  },
+  {
+    "id": 100,
+    "name": "Eva Brown",
+    "company": "NextGen Systems",
+    "email": "eva.brown@nextgensystems.com",
+    "source": "Referral",
+    "score": 86,
+    "status": "Lost"
+  }
+]
