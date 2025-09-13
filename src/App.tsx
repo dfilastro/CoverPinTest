@@ -1,6 +1,13 @@
 import './App.css';
 import { LeadsProvider } from './context/LeadsContext';
 import LeadsList from './components/LeadsList';
+import { getLeadsFromStorage, saveLeadsToStorage } from './data/useLeadsStorage';
+
+const leads = getLeadsFromStorage();
+
+if (leads.length > 0) {
+  saveLeadsToStorage(leads);
+}
 
 function App() {
   return (

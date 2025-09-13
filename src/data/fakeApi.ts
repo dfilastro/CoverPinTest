@@ -1,5 +1,5 @@
-import leadsData from './leads.json';
 import type { Lead } from '../context/LeadsContext';
+import { getLeadsFromStorage } from './useLeadsStorage';
 
 export function fetchLeads(
   page: number = 1,
@@ -12,7 +12,8 @@ export function fetchLeads(
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
-        const filtered = leadsData
+        const leads = getLeadsFromStorage() as Lead[];
+        const filtered = leads
           .filter((lead) => {
             const matchesSearch =
               lead.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -52,7 +53,8 @@ export function fetchMoreLeads(
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
-        const filtered = leadsData
+        const leads = getLeadsFromStorage() as Lead[];
+        const filtered = leads
           .filter((lead) => {
             const matchesSearch =
               lead.name.toLowerCase().includes(search.toLowerCase()) ||

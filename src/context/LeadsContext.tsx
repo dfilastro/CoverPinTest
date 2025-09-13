@@ -54,7 +54,7 @@ export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [sortOrder, setSortOrder] = useState('desc');
   useEffect(() => {
     setLoading(true);
-    setLeads([]); // Reset leads when search/filter changes
+    setLeads([]);
     setHasMore(true);
     fetchLeads(1, pageSize, search, statusFilter, sortBy, sortOrder)
       .then((res) => {

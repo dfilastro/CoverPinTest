@@ -2,6 +2,8 @@ import type { Lead } from '../context/LeadsContext';
 import { useLeads } from '../context/LeadsContext';
 import HighlightText from './HighlightText';
 import { GoArrowDown, GoArrowUp } from 'react-icons/go';
+import TableSkeleton from './TableSkeleton';
+import LeadDetailPanel from './LeadDetailPanel';
 
 export default function LeadsTable({
   leads,
@@ -19,9 +21,8 @@ export default function LeadsTable({
   const { search, setSortBy, setSortOrder } = useLeads();
   const { sortBy, sortOrder } = useLeads();
 
-  if (loading) return <p>Loading leads...</p>;
-  if (error) return <p>Failed to load leads</p>;
-  if (leads.length === 0) return <p>No leads found</p>;
+  if (!loading && error) return <p>Failed to load leads</p>;
+  if (!loading && leads.length === 0) return <p>No leads found</p>;
 
   // Only sortable by score, as asked in the assignment,
   // to implement other sortable headers, just change sortable to true
@@ -40,7 +41,6 @@ export default function LeadsTable({
 
   return (
     <div>
-      {/* Leads Table */}
       <div className='w-full border-solid border-[1px] border-gray-200 rounded-md'>
         <div className='grid grid-cols-4 bg-[#F8FAFB] rounded-t-lg'>
           {tableHeaders.map((header) => (
@@ -63,32 +63,40 @@ export default function LeadsTable({
           ))}
         </div>
 
-        <div className='w-full'>
-          {leads.map((lead, index) => (
-            <div
-              key={lead.id}
-              ref={index === leads.length - 1 ? lastLeadElementRef : null}
-              className='cursor-pointer hover:bg-[#F8FAFB] grid grid-cols-4 rounded-b-lg'
-              onClick={() => setSelectedLead(lead)}
-            >
-              <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
-                <HighlightText text={lead.name} searchTerm={search} />
+        {loading ? (
+          <div className='w-full'>
+            <TableSkeleton rows={10} />
+          </div>
+        ) : (
+          <div className='w-full'>
+            {leads.map((lead, index) => (
+              <div
+                key={lead.id}
+                ref={index === leads.length - 1 ? lastLeadElementRef : null}
+                className='cursor-pointer hover:bg-[#F8FAFB] grid grid-cols-4 rounded-b-lg'
+                onClick={() => setSelectedLead(lead)}
+              >
+                <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                  <HighlightText text={lead.name} searchTerm={search} />
+                </div>
+                <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                  <HighlightText text={lead.company} searchTerm={search} />
+                </div>
+                <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                  {lead.score}
+                </div>
+                <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4'>
+                  <p className='border-[1px] border-gray-400 rounded-full w-fit px-2'>
+                    {lead.status}
+                  </p>
+                </div>
               </div>
-              <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
-                <HighlightText text={lead.company} searchTerm={search} />
-              </div>
-              <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
-                {lead.score}
-              </div>
-              <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4'>
-                <p className='border-[1px] border-gray-400 rounded-full w-fit px-2'>
-                  {lead.status}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      <LeadDetailPanel />
     </div>
   );
 }

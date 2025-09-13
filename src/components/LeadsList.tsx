@@ -1,7 +1,8 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { useLeads } from '../context/LeadsContext';
-import SearchBox from './SearchBox';
 import LeadsTable from './LeadsTable';
+import SearchBox from './SearchBox';
+import TableSkeleton from './TableSkeleton';
 
 export default function LeadsList() {
   const {
@@ -12,7 +13,6 @@ export default function LeadsList() {
     setSearch,
     statusFilter,
     setStatusFilter,
-    selectedLead,
     setSelectedLead,
     hasMore,
     loadingMore,
@@ -20,10 +20,6 @@ export default function LeadsList() {
   } = useLeads();
 
   const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    console.log(selectedLead);
-  }, [selectedLead]);
 
   const lastLeadElementRef = useCallback(
     (node: HTMLDivElement) => {
@@ -43,7 +39,6 @@ export default function LeadsList() {
 
   return (
     <div>
-      {/* Search + Filter */}
       <div className='mb-4 flex gap-2'>
         <SearchBox value={search} onChange={setSearch} />
         <select
@@ -66,19 +61,7 @@ export default function LeadsList() {
         lastLeadElementRef={lastLeadElementRef}
       />
 
-      {/* Loading More Indicator */}
-      {loadingMore && (
-        <div className='mt-4 flex justify-center'>
-          <div className='text-gray-600'>Loading more leads...</div>
-        </div>
-      )}
-
-      {/* End of Results */}
-      {!hasMore && leads.length > 0 && !loading && (
-        <div className='mt-4 flex justify-center'>
-          <div className='text-gray-500'>No more leads to load</div>
-        </div>
-      )}
+      {loadingMore && <TableSkeleton rows={6} />}
     </div>
   );
 }
