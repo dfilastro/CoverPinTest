@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { fetchLeads } from '../data/fakeApi';
+import { fetchLeads, fetchMoreLeads } from '../data/fakeApi';
 
 export interface Lead {
   id: number;
@@ -16,16 +16,20 @@ interface LeadsContextType {
   loading: boolean;
   error: boolean;
   selectedLead: Lead | null;
-  page: number;
   pageSize: number;
-  total: number;
   search: string;
   statusFilter: string;
-  setPage: (page: number) => void;
+  hasMore: boolean;
+  loadingMore: boolean;
   setSearch: (search: string) => void;
   setStatusFilter: (status: string) => void;
   setSelectedLead: (lead: Lead | null) => void;
   updateLead: (lead: Lead) => void;
+  loadMoreLeads: () => void;
+  sortBy: string;
+  sortOrder: string;
+  setSortBy: (sortBy: string) => void;
+  setSortOrder: (sortOrder: string) => void;
 }
 
 const LeadsContext = createContext<LeadsContextType | undefined>(undefined);
@@ -41,18 +45,21 @@ export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
-  const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
-  const [total, setTotal] = useState(0);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-
+  const [hasMore, setHasMore] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [sortBy, setSortBy] = useState('score');
+  const [sortOrder, setSortOrder] = useState('desc');
   useEffect(() => {
     setLoading(true);
-    fetchLeads(page, pageSize, search, statusFilter)
+    setLeads([]); // Reset leads when search/filter changes
+    setHasMore(true);
+    fetchLeads(1, pageSize, search, statusFilter, sortBy, sortOrder)
       .then((res) => {
         setLeads(res.leads);
-        setTotal(res.total);
+        setHasMore(res.leads.length === pageSize && res.leads.length < res.total);
         setLoading(false);
         setError(false);
       })
@@ -60,10 +67,25 @@ export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setError(true);
         setLoading(false);
       });
-  }, [page, pageSize, search, statusFilter]);
+  }, [pageSize, search, statusFilter, sortBy, sortOrder]);
 
   const updateLead = (updatedLead: Lead) => {
     setLeads((prev) => prev.map((lead) => (lead.id === updatedLead.id ? updatedLead : lead)));
+  };
+
+  const loadMoreLeads = () => {
+    if (loadingMore || !hasMore) return;
+
+    setLoadingMore(true);
+    fetchMoreLeads(leads, pageSize, search, statusFilter, sortBy, sortOrder)
+      .then((res) => {
+        setLeads((prev) => [...prev, ...res.leads]);
+        setHasMore(res.hasMore);
+        setLoadingMore(false);
+      })
+      .catch(() => {
+        setLoadingMore(false);
+      });
   };
 
   return (
@@ -73,16 +95,20 @@ export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         loading,
         error,
         selectedLead,
-        page,
         pageSize,
-        total,
         search,
         statusFilter,
-        setPage,
+        hasMore,
+        loadingMore,
         setSearch,
         setStatusFilter,
         setSelectedLead,
         updateLead,
+        loadMoreLeads,
+        sortBy,
+        sortOrder,
+        setSortBy,
+        setSortOrder,
       }}
     >
       {children}

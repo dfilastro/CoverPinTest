@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useLeads } from '../context/LeadsContext';
 import SearchBox from './SearchBox';
 import LeadsTable from './LeadsTable';
@@ -8,23 +8,38 @@ export default function LeadsList() {
     leads,
     loading,
     error,
-    page,
-    total,
-    pageSize,
-    setPage,
     search,
     setSearch,
     statusFilter,
     setStatusFilter,
     selectedLead,
     setSelectedLead,
+    hasMore,
+    loadingMore,
+    loadMoreLeads,
   } = useLeads();
+
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     console.log(selectedLead);
   }, [selectedLead]);
 
-  const totalPages = Math.ceil(total / pageSize);
+  const lastLeadElementRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (loading || loadingMore) return;
+      if (observerRef.current) observerRef.current.disconnect();
+
+      observerRef.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadMoreLeads();
+        }
+      });
+
+      if (node) observerRef.current.observe(node);
+    },
+    [loading, loadingMore, hasMore, loadMoreLeads]
+  );
 
   return (
     <div>
@@ -43,28 +58,27 @@ export default function LeadsList() {
           <option value='Lost'>Lost</option>
         </select>
       </div>
-      <LeadsTable leads={leads} loading={loading} error={error} setSelectedLead={setSelectedLead} />
+      <LeadsTable
+        leads={leads}
+        loading={loading}
+        error={error}
+        setSelectedLead={setSelectedLead}
+        lastLeadElementRef={lastLeadElementRef}
+      />
 
-      {/* Pagination */}
-      <div className='mt-4 flex justify-between items-center'>
-        <button
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-          className='px-3 py-1 bg-gray-300 rounded disabled:opacity-50'
-        >
-          Previous
-        </button>
-        <span>
-          Page {page} of {totalPages}
-        </span>
-        <button
-          disabled={page >= totalPages}
-          onClick={() => setPage(page + 1)}
-          className='px-3 py-1 bg-gray-300 rounded disabled:opacity-50'
-        >
-          Next
-        </button>
-      </div>
+      {/* Loading More Indicator */}
+      {loadingMore && (
+        <div className='mt-4 flex justify-center'>
+          <div className='text-gray-600'>Loading more leads...</div>
+        </div>
+      )}
+
+      {/* End of Results */}
+      {!hasMore && leads.length > 0 && !loading && (
+        <div className='mt-4 flex justify-center'>
+          <div className='text-gray-500'>No more leads to load</div>
+        </div>
+      )}
     </div>
   );
 }
