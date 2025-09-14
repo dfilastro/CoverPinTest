@@ -62,7 +62,7 @@ export default function LeadsTable({
             <div
               onClick={() => header.sortable && handleSort(header.key)}
               key={header.key}
-              className={`border-gray-200 border-r-[1px] last:border-r-0 py-2 text-[#46566A] flex items-center justify-center gap-1 ${
+              className={`border-gray-200 py-2 text-[#46566A] flex items-center justify-start px-4 gap-1 ${
                 header.sortable ? 'cursor-pointer' : ''
               }`}
             >
@@ -95,21 +95,21 @@ export default function LeadsTable({
                   }`}
                   onClick={() => setSelectedLead(lead)}
                 >
-                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                  <div className='col-span-1 border-gray-200 text-start border-t-[1px] px-4 py-2'>
                     <HighlightText text={lead.name} searchTerm={search} />
                   </div>
-                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                  <div className='col-span-1 border-gray-200 text-start border-t-[1px] px-4 py-2'>
                     <HighlightText text={lead.company} searchTerm={search} />
                   </div>
-                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                  <div className='col-span-1 border-gray-200 text-start border-t-[1px] px-4 py-2'>
                     {lead.score}
                   </div>
-                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2 px-4'>
-                    <p className='border-[1px] border-gray-400 rounded-full w-fit px-2'>
+                  <div className='col-span-1 border-gray-200 border-t-[1px] px-4 py-2 flex flex-col justify-center'>
+                    <p className='border-[1px] border-gray-400 rounded-full text-xs w-fit px-2 py-1'>
                       {lead.status}
                     </p>
                   </div>
-                  <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4 flex items-center justify-center'>
+                  <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4 flex items-center justify-start'>
                     {isConverted ? (
                       <div className='flex items-center gap-1 text-green-600'>
                         <CheckCircle size={16} />
@@ -120,7 +120,7 @@ export default function LeadsTable({
                         variant='coverpin'
                         size='sm'
                         onClick={(e) => handleConvertClick(lead, e)}
-                        className='text-xs px-3 py-1 h-auto'
+                        className='text-xs px-3 py-1 rounded-full h-auto'
                       >
                         Convert
                       </Button>
