@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Input } from './ui/input';
 
 export default function SearchBox({
   value,
@@ -20,7 +21,7 @@ export default function SearchBox({
   }, [localValue]);
 
   return (
-    <input
+    <Input
       type='text'
       className='border px-2 py-1 rounded'
       value={localValue}

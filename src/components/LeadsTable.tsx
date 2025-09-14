@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import type { Lead } from '../context/LeadsContext';
 import { useLeads } from '../context/LeadsContext';
+import { useOpportunities } from '../context/OpportunitiesContext';
 import HighlightText from './HighlightText';
 import { GoArrowDown, GoArrowUp } from 'react-icons/go';
+import { CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import TableSkeleton from './TableSkeleton';
 import LeadDetailPanel from './LeadDetailPanel';
+import ConvertToOpportunityDialog from './ConvertToOpportunityDialog';
 
 export default function LeadsTable({
   leads,
@@ -20,6 +25,9 @@ export default function LeadsTable({
 }) {
   const { search, setSortBy, setSortOrder } = useLeads();
   const { sortBy, sortOrder } = useLeads();
+  const { isLeadConverted } = useOpportunities();
+  const [showConvertDialog, setShowConvertDialog] = useState(false);
+  const [selectedLeadForConversion, setSelectedLeadForConversion] = useState<Lead | null>(null);
 
   if (!loading && error) return <p>Failed to load leads</p>;
   if (!loading && leads.length === 0) return <p>No leads found</p>;
@@ -32,6 +40,7 @@ export default function LeadsTable({
     { title: 'Company', key: 'company', sortable: false },
     { title: 'Score', key: 'score', sortable: true },
     { title: 'Status', key: 'status', sortable: false },
+    { title: 'Action', key: 'action', sortable: false },
   ];
 
   const handleSort = (header: string) => {
@@ -39,10 +48,16 @@ export default function LeadsTable({
     setSortOrder(header === sortBy ? (sortOrder === 'desc' ? 'asc' : 'desc') : 'desc');
   };
 
+  const handleConvertClick = (lead: Lead, event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent row click
+    setSelectedLeadForConversion(lead);
+    setShowConvertDialog(true);
+  };
+
   return (
     <div>
       <div className='w-full border-solid border-[1px] border-gray-200 rounded-md'>
-        <div className='grid grid-cols-4 bg-[#F8FAFB] rounded-t-lg'>
+        <div className='grid grid-cols-5 bg-[#F8FAFB] rounded-t-lg'>
           {tableHeaders.map((header) => (
             <div
               onClick={() => header.sortable && handleSort(header.key)}
@@ -69,34 +84,66 @@ export default function LeadsTable({
           </div>
         ) : (
           <div className='w-full'>
-            {leads.map((lead, index) => (
-              <div
-                key={lead.id}
-                ref={index === leads.length - 1 ? lastLeadElementRef : null}
-                className='cursor-pointer hover:bg-[#F8FAFB] grid grid-cols-4 rounded-b-lg'
-                onClick={() => setSelectedLead(lead)}
-              >
-                <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
-                  <HighlightText text={lead.name} searchTerm={search} />
+            {leads.map((lead, index) => {
+              const isConverted = isLeadConverted(lead.id);
+              return (
+                <div
+                  key={lead.id}
+                  ref={index === leads.length - 1 ? lastLeadElementRef : null}
+                  className={`cursor-pointer hover:bg-[#F8FAFB] grid grid-cols-5 rounded-b-lg ${
+                    isConverted ? 'bg-green-50/50' : ''
+                  }`}
+                  onClick={() => setSelectedLead(lead)}
+                >
+                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                    <HighlightText text={lead.name} searchTerm={search} />
+                  </div>
+                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                    <HighlightText text={lead.company} searchTerm={search} />
+                  </div>
+                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
+                    {lead.score}
+                  </div>
+                  <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2 px-4'>
+                    <p className='border-[1px] border-gray-400 rounded-full w-fit px-2'>
+                      {lead.status}
+                    </p>
+                  </div>
+                  <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4 flex items-center justify-center'>
+                    {isConverted ? (
+                      <div className='flex items-center gap-1 text-green-600'>
+                        <CheckCircle size={16} />
+                        <span className='text-xs font-medium'>Converted</span>
+                      </div>
+                    ) : (
+                      <Button
+                        variant='coverpin'
+                        size='sm'
+                        onClick={(e) => handleConvertClick(lead, e)}
+                        className='text-xs px-3 py-1 h-auto'
+                      >
+                        Convert
+                      </Button>
+                    )}
+                  </div>
                 </div>
-                <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
-                  <HighlightText text={lead.company} searchTerm={search} />
-                </div>
-                <div className='col-span-1 border-gray-200 border-r-[1px] border-t-[1px] py-2'>
-                  {lead.score}
-                </div>
-                <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4'>
-                  <p className='border-[1px] border-gray-400 rounded-full w-fit px-2'>
-                    {lead.status}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
 
       <LeadDetailPanel />
+
+      <ConvertToOpportunityDialog
+        lead={selectedLeadForConversion}
+        open={showConvertDialog}
+        onOpenChange={setShowConvertDialog}
+        onSuccess={() => {
+          setShowConvertDialog(false);
+          setSelectedLeadForConversion(null);
+        }}
+      />
     </div>
   );
 }

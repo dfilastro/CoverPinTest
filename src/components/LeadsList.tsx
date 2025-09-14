@@ -3,6 +3,7 @@ import { useLeads } from '../context/LeadsContext';
 import LeadsTable from './LeadsTable';
 import SearchBox from './SearchBox';
 import TableSkeleton from './TableSkeleton';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 export default function LeadsList() {
   const {
@@ -41,17 +42,18 @@ export default function LeadsList() {
     <div>
       <div className='mb-4 flex gap-2'>
         <SearchBox value={search} onChange={setSearch} />
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className='border px-2 py-1 rounded'
-        >
-          <option value=''>All Status</option>
-          <option value='New'>New</option>
-          <option value='Contacted'>Contacted</option>
-          <option value='Qualified'>Qualified</option>
-          <option value='Lost'>Lost</option>
-        </select>
+        <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value)}>
+          <SelectTrigger>
+            <SelectValue placeholder='Select status' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='All'>All Status</SelectItem>
+            <SelectItem value='New'>New</SelectItem>
+            <SelectItem value='Contacted'>Contacted</SelectItem>
+            <SelectItem value='Qualified'>Qualified</SelectItem>
+            <SelectItem value='Lost'>Lost</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <LeadsTable
         leads={leads}

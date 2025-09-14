@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLeads } from '../context/LeadsContext';
+import { useOpportunities } from '../context/OpportunitiesContext';
 import { updateLeadInStorage } from '../data/useLeadsStorage';
 import {
   Drawer,
@@ -19,12 +20,15 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ConvertToOpportunityDialog from './ConvertToOpportunityDialog';
 
 export default function LeadDetailPanel() {
   const { selectedLead, setSelectedLead, updateLead } = useLeads();
+  const { isLeadConverted, getOpportunitiesByLead } = useOpportunities();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
+  const [showConvertDialog, setShowConvertDialog] = useState(false);
 
   useEffect(() => {
     if (selectedLead) {
@@ -35,6 +39,9 @@ export default function LeadDetailPanel() {
   }, [selectedLead]);
 
   if (!selectedLead) return null;
+
+  const isConverted = isLeadConverted(selectedLead.id);
+  const existingOpportunities = getOpportunitiesByLead(selectedLead.id);
 
   const validateEmail = (email: string) => {
     const re = /\S+@\S+\.\S+/;
@@ -59,9 +66,20 @@ export default function LeadDetailPanel() {
   return (
     <Drawer open={!!selectedLead} onOpenChange={() => setSelectedLead(null)}>
       <DrawerContent>
-        <DrawerHeader className='text-center'>
-          <DrawerTitle className='text-2xl font-semibold'>Edit Lead Details</DrawerTitle>
-          <DrawerDescription>Update the information for {selectedLead?.name}</DrawerDescription>
+        <DrawerHeader className='text-center flex justify-between items-center'>
+          <div className='flex flex-col'>
+            <DrawerTitle className='text-2xl font-semibold'>Edit Lead Details</DrawerTitle>
+            <DrawerDescription>Update the information for {selectedLead?.name}</DrawerDescription>
+          </div>
+
+          <Button
+            variant='coverpin'
+            onClick={() => setShowConvertDialog(true)}
+            className='px-6'
+            disabled={isConverted}
+          >
+            {isConverted ? 'Already Converted' : 'Convert to Opportunity'}
+          </Button>
         </DrawerHeader>
 
         <div className='px-4 pb-8'>
@@ -107,6 +125,15 @@ export default function LeadDetailPanel() {
                 </div>
               )}
 
+              {isConverted && (
+                <div className='p-3 text-sm text-blue-600 bg-blue-50 border border-blue-200 rounded-md'>
+                  <p className='font-medium'>Already converted to opportunity!</p>
+                  <p className='text-xs mt-1'>
+                    {existingOpportunities.length} opportunity(s) created from this lead.
+                  </p>
+                </div>
+              )}
+
               <div className='flex justify-end gap-3 pt-4'>
                 <Button variant='outline' onClick={handleCancel} className='px-6'>
                   Cancel
@@ -119,6 +146,16 @@ export default function LeadDetailPanel() {
           </Card>
         </div>
       </DrawerContent>
+
+      <ConvertToOpportunityDialog
+        lead={selectedLead}
+        open={showConvertDialog}
+        onOpenChange={setShowConvertDialog}
+        onSuccess={() => {
+          setShowConvertDialog(false);
+          setSelectedLead(null);
+        }}
+      />
     </Drawer>
   );
 }
