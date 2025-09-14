@@ -15,8 +15,8 @@ function App() {
   return (
     <LeadsProvider>
       <OpportunitiesProvider>
-        <div className='p-4 space-y-6'>
-          <h1 className='text-2xl font-bold mb-4'>Mini Seller Console</h1>
+        <div className='p-4 space-y-6 sm:border-solid sm:border-[1px] border-gray-200 rounded-md my-10'>
+          <h1 className='text-2xl font-bold mb-4 text-left'>Leads Console</h1>
           <OpportunitiesTable />
           <LeadsList />
         </div>

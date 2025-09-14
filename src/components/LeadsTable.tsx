@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import TableSkeleton from './TableSkeleton';
 import LeadDetailPanel from './LeadDetailPanel';
 import ConvertToOpportunityDialog from './ConvertToOpportunityDialog';
+import { CiFaceMeh } from 'react-icons/ci';
 
 export default function LeadsTable({
   leads,
@@ -30,7 +31,13 @@ export default function LeadsTable({
   const [selectedLeadForConversion, setSelectedLeadForConversion] = useState<Lead | null>(null);
 
   if (!loading && error) return <p>Failed to load leads</p>;
-  if (!loading && leads.length === 0) return <p>No leads found</p>;
+  if (!loading && leads.length === 0)
+    return (
+      <div className='flex gap-2 justify-center items-center py-10'>
+        <CiFaceMeh size={48} />
+        <h3>No leads found</h3>
+      </div>
+    );
 
   // Only sortable by score, as asked in the assignment,
   // to implement other sortable headers, just change sortable to true

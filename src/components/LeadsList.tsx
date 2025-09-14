@@ -6,6 +6,8 @@ import TableSkeleton from './TableSkeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Button } from './ui/button';
 import { clearAllStoredFilters } from '../utils/localStorage';
+import DonutChart from './DonutChart';
+import { aggregateByScore, aggregateBySource, aggregateByStatus } from '@/utils/helperFunctions';
 
 export default function LeadsList() {
   const {
@@ -50,6 +52,22 @@ export default function LeadsList() {
 
   return (
     <div>
+      <div className='hidden sm:flex gap-6 py-4'>
+        <div className='flex flex-col gap-4 p-5 border-solid border-[1px] rounded-md'>
+          <h4 className='text-start'>Source</h4>
+          <DonutChart data={aggregateBySource(leads)} />
+        </div>
+
+        <div className='flex flex-col gap-4 p-5 border-solid border-[1px] rounded-md'>
+          <h4 className='text-start'>Status</h4>
+          <DonutChart data={aggregateByStatus(leads)} />
+        </div>
+
+        <div className='flex flex-col gap-4 p-5 border-solid border-[1px] rounded-md'>
+          <h4 className='text-start'>Score</h4>
+          <DonutChart data={aggregateByScore(leads)} />
+        </div>
+      </div>
       <div className='mb-4 flex flex-col sm:flex-row gap-3 sm:gap-2 items-center'>
         <SearchBox value={search} onChange={setSearch} />
         <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value)}>
