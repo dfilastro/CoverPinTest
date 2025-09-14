@@ -57,14 +57,14 @@ export default function LeadsTable({
   return (
     <div>
       <div className='w-full border-solid border-[1px] border-gray-200 rounded-md'>
-        <div className='grid grid-cols-5 bg-[#F8FAFB] rounded-t-lg'>
-          {tableHeaders.map((header) => (
+        <div className='grid grid-cols-5 bg-[#F8FAFB] rounded-t-lg py-2'>
+          {tableHeaders.map((header, i) => (
             <div
               onClick={() => header.sortable && handleSort(header.key)}
               key={header.key}
-              className={`border-gray-200 py-2 text-[#46566A] flex items-center justify-start px-4 gap-1 ${
+              className={`border-gray-200 py-2 text-[#46566A] flex items-center justify-start px-2 sm:px-4 gap-1 ${
                 header.sortable ? 'cursor-pointer' : ''
-              }`}
+              } ${i > 2 ? 'hidden sm:flex' : i === 2 ? 'col-span-1' : 'sm:col-span-1 col-span-2'}`}
             >
               <p>{header.title}</p>
               {sortBy === header.key ? (
@@ -95,21 +95,21 @@ export default function LeadsTable({
                   }`}
                   onClick={() => setSelectedLead(lead)}
                 >
-                  <div className='col-span-1 border-gray-200 text-start border-t-[1px] px-4 py-2'>
+                  <div className='sm:col-span-1 col-span-2 border-gray-200 text-start border-t-[1px] px-2 sm:px-4 py-2'>
                     <HighlightText text={lead.name} searchTerm={search} />
                   </div>
-                  <div className='col-span-1 border-gray-200 text-start border-t-[1px] px-4 py-2'>
+                  <div className='sm:col-span-1 col-span-2 border-gray-200 text-start border-t-[1px] px-2 sm:px-4 py-2'>
                     <HighlightText text={lead.company} searchTerm={search} />
                   </div>
                   <div className='col-span-1 border-gray-200 text-start border-t-[1px] px-4 py-2'>
                     {lead.score}
                   </div>
-                  <div className='col-span-1 border-gray-200 border-t-[1px] px-4 py-2 flex flex-col justify-center'>
-                    <p className='border-[1px] border-gray-400 rounded-full text-xs w-fit px-2 py-1'>
+                  <div className='sm:col-span-1 col-span-2 border-gray-200 sm:border-t-[1px] px-2 sm:px-4 py-2 flex flex-col justify-center'>
+                    <p className='border-[1px] border-gray-400 rounded-full text-md sm:text-xs w-fit sm:px-2 px-3 py-1'>
                       {lead.status}
                     </p>
                   </div>
-                  <div className='col-span-1 border-gray-200 border-t-[1px] py-2 px-4 flex items-center justify-start'>
+                  <div className='sm:col-span-1 col-span-3 border-gray-200 sm:border-t-[1px] py-2 px-2 sm:px-4 flex items-center justify-start'>
                     {isConverted ? (
                       <div className='flex items-center gap-1 text-green-600'>
                         <CheckCircle size={16} />
@@ -120,7 +120,7 @@ export default function LeadsTable({
                         variant='coverpin'
                         size='sm'
                         onClick={(e) => handleConvertClick(lead, e)}
-                        className='text-xs px-3 py-1 rounded-full h-auto'
+                        className='sm:text-xs text-sm px-5 sm:px-3 py-2 sm:py-1 rounded-full h-auto'
                       >
                         Convert
                       </Button>

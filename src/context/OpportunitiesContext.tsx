@@ -22,7 +22,7 @@ export const OpportunitiesProvider: React.FC<{ children: ReactNode }> = ({ child
 
   const createOpportunity = (data: CreateOpportunityData): Opportunity => {
     const newOpportunity: Opportunity = {
-      id: `opp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: `${data.leadId}_${Math.random().toString().slice(2, 6)}`,
       name: data.name,
       stage: data.stage,
       amount: data.amount,

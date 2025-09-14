@@ -50,7 +50,7 @@ export default function LeadsList() {
 
   return (
     <div>
-      <div className='mb-4 flex gap-2 items-center'>
+      <div className='mb-4 flex flex-col sm:flex-row gap-3 sm:gap-2 items-center'>
         <SearchBox value={search} onChange={setSearch} />
         <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value)}>
           <SelectTrigger>
@@ -65,7 +65,12 @@ export default function LeadsList() {
           </SelectContent>
         </Select>
         {hasActiveFilters && (
-          <Button variant='outline' size='sm' onClick={handleClearFilters} className='text-xs'>
+          <Button
+            variant='outline'
+            size='sm'
+            onClick={handleClearFilters}
+            className='sm:text-xs text-sm sm:w-fit w-full'
+          >
             Clear Filters
           </Button>
         )}

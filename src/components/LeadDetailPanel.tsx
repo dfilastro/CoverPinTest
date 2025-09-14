@@ -66,7 +66,7 @@ export default function LeadDetailPanel() {
   return (
     <Drawer open={!!selectedLead} onOpenChange={() => setSelectedLead(null)}>
       <DrawerContent>
-        <DrawerHeader className='text-center flex justify-between items-center'>
+        <DrawerHeader className='text-center flex flex-col sm:flex-row gap-4 justify-between items-center'>
           <div className='flex flex-col'>
             <DrawerTitle className='text-2xl font-semibold'>Edit Lead Details</DrawerTitle>
             <DrawerDescription>Update the information for {selectedLead?.name}</DrawerDescription>
@@ -134,7 +134,7 @@ export default function LeadDetailPanel() {
                 </div>
               )}
 
-              <div className='flex justify-end gap-3 pt-4'>
+              <div className='sm:flex grid grid-cols-2 justify-end gap-3 pt-4'>
                 <Button variant='outline' onClick={handleCancel} className='px-6'>
                   Cancel
                 </Button>

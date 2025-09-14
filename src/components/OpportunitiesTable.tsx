@@ -61,22 +61,20 @@ export default function OpportunitiesTable() {
           <table className='w-full'>
             <thead>
               <tr className='border-b'>
-                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground'>
+                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground sm:min-w-[15vw] min-w-[35vw]'>
                   Name
                 </th>
-                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground'>
+                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground sm:min-w-[15vw] min-w-[30vw]'>
                   Account
                 </th>
-                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground'>
+                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground sm:min-w-[10vw] min-w-[30vw]'>
                   Stage
                 </th>
-                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground'>
+                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground sm:min-w-[15vw] min-w-[30vw]'>
                   Amount
                 </th>
-                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground'>
-                  Source Lead
-                </th>
-                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground'>
+
+                <th className='text-left py-3 px-2 font-medium text-sm text-muted-foreground sm:min-w-[15vw] min-w-[30vw]'>
                   Created
                 </th>
               </tr>
@@ -85,13 +83,20 @@ export default function OpportunitiesTable() {
               {opportunities.map((opportunity) => (
                 <tr key={opportunity.id} className='border-b hover:bg-muted/50'>
                   <td className='py-3 px-2'>
-                    <div className='font-medium'>{opportunity.name}</div>
-                    <div className='text-sm text-muted-foreground'>ID: {opportunity.id}</div>
+                    <div
+                      className='font-medium text-left underline cursor-pointer'
+                      onClick={() => handleLeadClick(opportunity.leadId)}
+                    >
+                      {opportunity.name}
+                    </div>
+                    <div className='text-sm text-muted-foreground text-left'>
+                      ID: {opportunity.id}
+                    </div>
                   </td>
-                  <td className='py-3 px-2'>
+                  <td className='py-3 px-2 text-left'>
                     <div className='text-sm'>{opportunity.accountName}</div>
                   </td>
-                  <td className='py-3 px-2'>
+                  <td className='py-3 px-2 text-left'>
                     <span
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                         opportunity.stage === 'Closed Won'
@@ -108,18 +113,11 @@ export default function OpportunitiesTable() {
                       {opportunity.stage}
                     </span>
                   </td>
-                  <td className='py-3 px-2'>
+                  <td className='py-3 px-2 text-left'>
                     <div className='text-sm font-medium'>{formatCurrency(opportunity.amount)}</div>
                   </td>
-                  <td className='py-3 px-2'>
-                    <button
-                      onClick={() => handleLeadClick(opportunity.leadId)}
-                      className='text-sm text-blue-600 hover:text-blue-800 hover:underline cursor-pointer'
-                    >
-                      {getLeadById(opportunity.leadId)?.name || `Lead #${opportunity.leadId}`}
-                    </button>
-                  </td>
-                  <td className='py-3 px-2'>
+
+                  <td className='py-3 px-2 text-left'>
                     <div className='text-sm text-muted-foreground'>
                       {formatDate(opportunity.createdAt)}
                     </div>
