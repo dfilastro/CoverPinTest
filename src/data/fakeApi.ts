@@ -18,7 +18,8 @@ export function fetchLeads(
             const matchesSearch =
               lead.name.toLowerCase().includes(search.toLowerCase()) ||
               lead.company.toLowerCase().includes(search.toLowerCase());
-            const matchesStatus = statusFilter === 'All' ? true : lead.status === statusFilter;
+            const matchesStatus =
+              statusFilter === 'All' || statusFilter === '' ? true : lead.status === statusFilter;
             return matchesSearch && matchesStatus;
           })
           .sort((a, b) => {
@@ -59,7 +60,8 @@ export function fetchMoreLeads(
             const matchesSearch =
               lead.name.toLowerCase().includes(search.toLowerCase()) ||
               lead.company.toLowerCase().includes(search.toLowerCase());
-            const matchesStatus = statusFilter === 'All' ? true : lead.status === statusFilter;
+            const matchesStatus =
+              statusFilter === 'All' || statusFilter === '' ? true : lead.status === statusFilter;
             return matchesSearch && matchesStatus;
           })
           .sort((a, b) => {

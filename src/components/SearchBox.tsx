@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Input } from './ui/input';
+import { useLeads } from '@/context/LeadsContext';
 
 export default function SearchBox({
   value,
@@ -9,6 +10,7 @@ export default function SearchBox({
   onChange: (v: string) => void;
 }) {
   const [localValue, setLocalValue] = useState(value);
+  const { search } = useLeads();
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -19,6 +21,13 @@ export default function SearchBox({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localValue]);
+
+  useEffect(() => {
+    if (search === '') {
+      setLocalValue('');
+      return;
+    }
+  }, [search]);
 
   return (
     <Input

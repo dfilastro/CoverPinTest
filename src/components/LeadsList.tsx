@@ -4,6 +4,8 @@ import LeadsTable from './LeadsTable';
 import SearchBox from './SearchBox';
 import TableSkeleton from './TableSkeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Button } from './ui/button';
+import { clearAllStoredFilters } from '../utils/localStorage';
 
 export default function LeadsList() {
   const {
@@ -19,6 +21,14 @@ export default function LeadsList() {
     loadingMore,
     loadMoreLeads,
   } = useLeads();
+
+  const handleClearFilters = () => {
+    clearAllStoredFilters();
+    setSearch('');
+    setStatusFilter('');
+  };
+
+  const hasActiveFilters = search || statusFilter;
 
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -40,7 +50,7 @@ export default function LeadsList() {
 
   return (
     <div>
-      <div className='mb-4 flex gap-2'>
+      <div className='mb-4 flex gap-2 items-center'>
         <SearchBox value={search} onChange={setSearch} />
         <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value)}>
           <SelectTrigger>
@@ -54,6 +64,11 @@ export default function LeadsList() {
             <SelectItem value='Lost'>Lost</SelectItem>
           </SelectContent>
         </Select>
+        {hasActiveFilters && (
+          <Button variant='outline' size='sm' onClick={handleClearFilters} className='text-xs'>
+            Clear Filters
+          </Button>
+        )}
       </div>
       <LeadsTable
         leads={leads}

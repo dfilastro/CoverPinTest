@@ -1,5 +1,12 @@
 import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { fetchLeads, fetchMoreLeads } from '../data/fakeApi';
+import {
+  getAllStoredFilters,
+  setStoredSearch,
+  setStoredStatusFilter,
+  setStoredSortBy,
+  setStoredSortOrder,
+} from '../utils/localStorage';
 
 export interface Lead {
   id: number;
@@ -41,17 +48,19 @@ export const useLeads = () => {
 };
 
 export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const storedFilters = getAllStoredFilters();
+
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [pageSize] = useState(10);
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
+  const [search, setSearch] = useState(storedFilters.search);
+  const [statusFilter, setStatusFilter] = useState(storedFilters.statusFilter);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [sortBy, setSortBy] = useState('score');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortBy, setSortBy] = useState(storedFilters.sortBy);
+  const [sortOrder, setSortOrder] = useState(storedFilters.sortOrder);
   useEffect(() => {
     setLoading(true);
     setLeads([]);
@@ -68,6 +77,26 @@ export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setLoading(false);
       });
   }, [pageSize, search, statusFilter, sortBy, sortOrder]);
+
+  const handleSetSearch = (newSearch: string) => {
+    setSearch(newSearch);
+    setStoredSearch(newSearch);
+  };
+
+  const handleSetStatusFilter = (newStatusFilter: string) => {
+    setStatusFilter(newStatusFilter);
+    setStoredStatusFilter(newStatusFilter);
+  };
+
+  const handleSetSortBy = (newSortBy: string) => {
+    setSortBy(newSortBy);
+    setStoredSortBy(newSortBy);
+  };
+
+  const handleSetSortOrder = (newSortOrder: string) => {
+    setSortOrder(newSortOrder);
+    setStoredSortOrder(newSortOrder);
+  };
 
   const updateLead = (updatedLead: Lead) => {
     setLeads((prev) => prev.map((lead) => (lead.id === updatedLead.id ? updatedLead : lead)));
@@ -100,15 +129,15 @@ export const LeadsProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         statusFilter,
         hasMore,
         loadingMore,
-        setSearch,
-        setStatusFilter,
+        setSearch: handleSetSearch,
+        setStatusFilter: handleSetStatusFilter,
         setSelectedLead,
         updateLead,
         loadMoreLeads,
         sortBy,
         sortOrder,
-        setSortBy,
-        setSortOrder,
+        setSortBy: handleSetSortBy,
+        setSortOrder: handleSetSortOrder,
       }}
     >
       {children}
